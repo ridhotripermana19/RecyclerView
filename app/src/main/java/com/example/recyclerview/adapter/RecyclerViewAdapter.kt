@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.recyclerview.R
 import com.example.recyclerview.model.Item
+import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_list.view.*
 
 class RecyclerViewAdapter(private val items: List<Item>, private val listener: (Item) -> Unit) : RecyclerView.Adapter<RecyclerViewAdapter.ClubViewHolder>(){
@@ -20,7 +21,7 @@ class RecyclerViewAdapter(private val items: List<Item>, private val listener: (
         holder.bind(items[position], listener)
     }
 
-    class ClubViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ClubViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer {
         fun bind(item: Item, listener: (Item) -> Unit) {
             with(itemView) {
                 name.text = item.name
